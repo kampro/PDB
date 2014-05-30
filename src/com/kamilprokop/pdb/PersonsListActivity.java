@@ -2,11 +2,11 @@ package com.kamilprokop.pdb;
 
 import android.app.Fragment;
 
-public class PhotoActivity extends OneFragmentActivity
+public class PersonsListActivity extends OneFragmentActivity
 {
 	@Override
 	protected Fragment createFragment()
 	{
-		return new PhotoFragment();
+		return new PersonsListFragment();
 	}
 }

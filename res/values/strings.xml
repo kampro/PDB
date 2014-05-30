@@ -15,5 +15,16 @@
     <string name="female">Kobieta</string>
     <string name="other_document_id">Nr innego dokumentu</string>
     <string name="take_photo">Zrób zdjęcie</string>
+    <string name="photo_taken">Zdjęcie zostało zapisane</string>
+    <string name="no_image">Brak obrazu</string>
+    <string name="address">Adres</string>
+    <string name="street">Ulica</string>
+    <string name="house_no">Nr domu</string>
+    <string name="apartment_no">Nr mieszkania</string>
+    <string name="postal_code">Kod pocztowy</string>
+    <string name="city">Miasto</string>
+    <string name="data_error">Błąd danych</string>
+    <string name="incorrect_persons_id">Numer PESEL jest nieprawidłowy</string>
+    <string name="date_hint">RRRR-MM-DD</string>
 
 </resources>
