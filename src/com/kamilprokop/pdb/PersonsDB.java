@@ -8,12 +8,12 @@ import android.content.Context;
 public class PersonsDB
 {
 	private static PersonsDB mInstance;
-	private Context mAppContext;
+	//private Context mAppContext;
 	private List<Person> mPersons;
 	
 	protected PersonsDB(Context appContext)
 	{
-		mAppContext = appContext;
+		//mAppContext = appContext;
 		
 		mPersons = new ArrayList<Person>();
 		Person p;

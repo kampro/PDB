@@ -1,10 +1,13 @@
 package com.kamilprokop.pdb;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class Person
+public class Person implements Serializable
 {
+	private static final long serialVersionUID = 84848484L;
+	
 	public enum Sex
 	{
 		MALE,

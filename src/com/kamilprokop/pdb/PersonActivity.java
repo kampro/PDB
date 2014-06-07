@@ -7,6 +7,8 @@ public class PersonActivity extends OneFragmentActivity
 	@Override
 	protected Fragment createFragment()
 	{
-		return new PersonFragment();
+		Person person = (Person)getIntent().getSerializableExtra(PersonFragment.EXTRA_PERSON);
+		
+		return PersonFragment.getInstance(person);
 	}
 }
