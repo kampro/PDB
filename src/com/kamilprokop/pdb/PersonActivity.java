@@ -2,7 +2,7 @@ package com.kamilprokop.pdb;
 
 import android.app.Fragment;
 
-public class PersonActivity extends OneFragmentActivity
+public class PersonActivity extends FragmentActivity
 {
 	@Override
 	protected Fragment createFragment()

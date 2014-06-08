@@ -20,7 +20,7 @@ public class PersonsDB
 		for(int i = 0; i < 30; i++)
 		{
 			p = new Person();
-			p.setName("Imiê " + i);
+			p.setName("ImiÄ™ " + i);
 			p.setSurname("Nazwisko" + i);
 			mPersons.add(p);
 		}

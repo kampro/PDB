@@ -1,5 +1,6 @@
 package com.kamilprokop.pdb;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,13 @@ import android.widget.ListView;
 
 public class PersonsListFragment extends ListFragment
 {
+	private Callbacks mCallbacks;
+	
+	public interface Callbacks
+	{
+		void onPersonClick(Person person);
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -20,12 +28,26 @@ public class PersonsListFragment extends ListFragment
 	}
 	
 	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		
+		mCallbacks = (Callbacks)activity;
+	}
+	
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+
+		mCallbacks = null;
+	}
+	
+	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
 		Person person = (Person)getListAdapter().getItem(position);
 		
-		Intent i = new Intent(getActivity(), PersonActivity.class);
-		i.putExtra(PersonFragment.EXTRA_PERSON, person);
-		startActivity(i);
+		mCallbacks.onPersonClick(person);
 	}
 }
