@@ -26,5 +26,8 @@
     <string name="data_error">Błąd danych</string>
     <string name="incorrect_persons_id">Numer PESEL jest nieprawidłowy</string>
     <string name="date_hint">RRRR-MM-DD</string>
+    <string name="add_person">Dodaj osobę</string>
+    <string name="save">Zapisz</string>
+    <string name="saved">Zapisano</string>
 
 </resources>

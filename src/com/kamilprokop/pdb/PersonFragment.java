@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.kamilprokop.pdb.PersonsListFragment.Callbacks;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -13,6 +15,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +35,12 @@ public class PersonFragment extends Fragment
 	
 	private ImageView mImgView;
 	private Person mPerson;
+	private Callbacks mCallbacks;
+	
+	public interface Callbacks
+	{
+		void onPersonSaved();
+	}
 	
 	public static PersonFragment getInstance(Person person)
 	{
@@ -69,6 +79,21 @@ public class PersonFragment extends Fragment
 		super.onSaveInstanceState(outState);
 		
 		outState.putSerializable(PersonFragment.EXTRA_PERSON, mPerson);
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+	{
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.person_fragment, menu);
+	}
+	
+	@Override
+	public void onAttach(Activity activity)
+	{
+		super.onAttach(activity);
+		
+		mCallbacks = (Callbacks)activity;
 	}
 	
 	@Override
@@ -164,7 +189,10 @@ public class PersonFragment extends Fragment
 					NavUtils.navigateUpFromSameTask(getActivity());
 				
 				return true;
-
+			case R.id.menu_item_save_person:
+				mCallbacks.onPersonSaved();
+				
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

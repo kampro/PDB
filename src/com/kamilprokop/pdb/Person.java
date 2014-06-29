@@ -1,8 +1,7 @@
 package com.kamilprokop.pdb;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
+import java.util.Calendar;
 
 public class Person implements Serializable
 {
@@ -14,23 +13,23 @@ public class Person implements Serializable
 		FEMALE
 	}
 	
-	private UUID mUuid;
+	private int mId;
 	private String mName;
 	private String mSurname;
-	private int mPesel;
+	private String mPesel;
 	private String mStreet;
 	private String mHouseNo;
 	private String mApartmentNo;
 	private String mPostalCode;
 	private String mCity;
 	private boolean mInsurance;
-	private Date mBirthDate;
+	private Calendar mBirthDate;
 	private Sex mSex;
 	private String mOtherDocumentID;
 	
 	public Person()
 	{
-		mUuid = UUID.randomUUID();
+		mId = -1;
 	}
 	
 	public String getName()
@@ -53,12 +52,12 @@ public class Person implements Serializable
 		mSurname = surname;
 	}
 	
-	public int getPESEL()
+	public String getPESEL()
 	{
 		return mPesel;
 	}
 	
-	public void setPESEL(int pesel)
+	public void setPESEL(String pesel)
 	{
 		mPesel = pesel;
 	}
@@ -123,12 +122,12 @@ public class Person implements Serializable
 		mInsurance = insurance;
 	}
 	
-	public Date getBirthDate()
+	public Calendar getBirthDate()
 	{
 		return mBirthDate;
 	}
 	
-	public void setBirthDate(Date birthDate)
+	public void setBirthDate(Calendar birthDate)
 	{
 		mBirthDate = birthDate;
 	}
@@ -153,9 +152,14 @@ public class Person implements Serializable
 		mOtherDocumentID = otherDocumentID;
 	}
 	
-	public UUID getUUID()
+	public int getId()
 	{
-		return mUuid;
+		return mId;
+	}
+	
+	public void setId(int id)
+	{
+		mId = id;
 	}
 	
 	@Override

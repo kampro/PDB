@@ -1,7 +1,9 @@
 package com.kamilprokop.pdb;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Context;
 
@@ -9,21 +11,12 @@ public class PersonsDB
 {
 	private static PersonsDB mInstance;
 	//private Context mAppContext;
-	private List<Person> mPersons;
+	private PersonsDatabaseHelper mPersonsDBHelper;
 	
-	protected PersonsDB(Context appContext)
+	protected PersonsDB(Context context)
 	{
 		//mAppContext = appContext;
-		
-		mPersons = new ArrayList<Person>();
-		Person p;
-		for(int i = 0; i < 30; i++)
-		{
-			p = new Person();
-			p.setName("Imię " + i);
-			p.setSurname("Nazwisko" + i);
-			mPersons.add(p);
-		}
+		mPersonsDBHelper = new PersonsDatabaseHelper(context);
 	}
 	
 	public static PersonsDB getInstance(Context context)
@@ -34,8 +27,8 @@ public class PersonsDB
 		return mInstance;
 	}
 	
-	public ArrayList<Person> getPersons()
+	public PersonsDatabaseHelper.PersonCursor queryPersons()
 	{
-		return (ArrayList<Person>)mPersons;
+		return mPersonsDBHelper.queryPersons();
 	}
 }
