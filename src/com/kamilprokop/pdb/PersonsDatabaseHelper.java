@@ -62,6 +62,18 @@ public class PersonsDatabaseHelper extends SQLiteOpenHelper
 
 	public long insertPerson(Person p)
 	{
+		p.setSurname("p");
+		p.setPESEL("90042412853");
+		p.setStreet("a");
+		p.setHouseNo("5");
+		p.setApartmentNo("5");
+		p.setPostalCode("45");
+		p.setCity("j");
+		p.setInsurance(true);
+		p.setBirthDate(new GregorianCalendar());
+		p.setSex(Person.Sex.MALE);
+		p.setOtherDocumentID("0");
+
 		int insurance;
 
 		if (p.isInsurance())
@@ -95,11 +107,12 @@ public class PersonsDatabaseHelper extends SQLiteOpenHelper
 
 		return getWritableDatabase().insert(TABLE_PERSONS, null, cv);
 	}
-	
+
 	public PersonCursor queryPersons()
 	{
-		Cursor c = getReadableDatabase().query(TABLE_PERSONS, null, null, null, null, null, COLUMN_PERSONS_SURNAME + " asc");
-		
+		Cursor c = getReadableDatabase().query(TABLE_PERSONS, null, null, null,
+				null, null, COLUMN_PERSONS_SURNAME + " asc");
+
 		return new PersonCursor(c);
 	}
 
@@ -112,20 +125,21 @@ public class PersonsDatabaseHelper extends SQLiteOpenHelper
 
 		public Person getPerson()
 		{
-			if(isBeforeFirst() || isAfterLast())
+			if (isBeforeFirst() || isAfterLast())
 				return null;
-			
+
 			boolean insurance;
-			
-			if(getInt(getColumnIndex(COLUMN_PERSONS_INSURANCE)) == 1)
+
+			if (getInt(getColumnIndex(COLUMN_PERSONS_INSURANCE)) == 1)
 				insurance = true;
 			else
 				insurance = false;
-			
+
 			Calendar cal;
-			String[] date = getString(getColumnIndex(COLUMN_PERSONS_BIRTH_DATE)).split("-");
-			
-			if(date.length == 3)
+			String[] date = getString(getColumnIndex(COLUMN_PERSONS_BIRTH_DATE))
+					.split("-");
+
+			if (date.length == 3)
 			{
 				cal = new GregorianCalendar();
 				cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date[2]));
@@ -134,14 +148,14 @@ public class PersonsDatabaseHelper extends SQLiteOpenHelper
 			}
 			else
 				cal = null;
-			
+
 			Person.Sex sex;
-			
-			if(getInt(getColumnIndex(COLUMN_PERSONS_SEX)) == 1)
+
+			if (getInt(getColumnIndex(COLUMN_PERSONS_SEX)) == 1)
 				sex = Person.Sex.MALE;
 			else
 				sex = Person.Sex.FEMALE;
-			
+
 			Person p = new Person();
 			p.setName(getString(getColumnIndex(COLUMN_PERSONS_NAME)));
 			p.setSurname(getString(getColumnIndex(COLUMN_PERSONS_SURNAME)));
@@ -155,7 +169,7 @@ public class PersonsDatabaseHelper extends SQLiteOpenHelper
 			p.setBirthDate(cal);
 			p.setSex(sex);
 			p.setOtherDocumentID(getString(getColumnIndex(COLUMN_PERSONS_OTHER_DOCUMENT_ID)));
-			
+
 			return p;
 		}
 	}

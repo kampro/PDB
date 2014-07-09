@@ -1,34 +1,35 @@
 package com.kamilprokop.pdb;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
-
 import android.content.Context;
 
 public class PersonsDB
 {
 	private static PersonsDB mInstance;
-	//private Context mAppContext;
+	// private Context mAppContext;
 	private PersonsDatabaseHelper mPersonsDBHelper;
-	
+
 	protected PersonsDB(Context context)
 	{
-		//mAppContext = appContext;
+		// mAppContext = appContext;
 		mPersonsDBHelper = new PersonsDatabaseHelper(context);
 	}
-	
+
 	public static PersonsDB getInstance(Context context)
 	{
-		if(mInstance == null)
+		if (mInstance == null)
 			mInstance = new PersonsDB(context.getApplicationContext());
-		
+
 		return mInstance;
 	}
-	
+
 	public PersonsDatabaseHelper.PersonCursor queryPersons()
 	{
 		return mPersonsDBHelper.queryPersons();
+	}
+
+	public void insertPerson(Person person)
+	{
+		if (person.getId() == -1)
+			mPersonsDBHelper.insertPerson(person);
 	}
 }

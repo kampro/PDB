@@ -29,5 +29,6 @@
     <string name="add_person">Dodaj osobę</string>
     <string name="save">Zapisz</string>
     <string name="saved">Zapisano</string>
+    <string name="new_person">Nowa osoba</string>
 
 </resources>
